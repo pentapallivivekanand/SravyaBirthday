@@ -1,0 +1,496 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;700&display=swap');
+
+:root {
+    --pink: #ffafcc;
+    --lavender: #b392ac;
+    --baby-blue: #a3daff;
+    --peach: #ffb892;
+    --white-transparent: rgba(255, 255, 255, 0.7);
+    --dark-text: #333;
+    --light-text: #f0f0f0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark-text);
+    overflow-x: hidden; /* Prevent horizontal scroll from floating elements */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    position: relative; /* For absolute positioning of background */
+}
+
+/* Animated Gradient Background */
+.background-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--pink), var(--lavender), var(--baby-blue), var(--peach));
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    z-index: -1; /* Send to back */
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* General Container */
+.container {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 20px;
+    position: relative; /* For z-index context */
+    z-index: 1; /* Ensure content is above background */
+}
+
+/* Glassmorphism Effect */
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Blurs the content behind */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out; /* Initial fade in */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    color: var(--dark-text);
+}
+
+.hero-section h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4em;
+    margin-bottom: 10px;
+    color: var(--dark-text);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.hero-section .subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    font-style: italic;
+    color: var(--dark-text);
+}
+
+/* Memory Lane (Slideshow) */
+.memory-lane {
+    text-align: center;
+}
+
+.memory-lane h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+    color: var(--dark-text);
+}
+
+.slideshow-container {
+    position: relative;
+    height: 400px; /* Adjust as needed */
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15); /* Stronger shadow for slideshow */
+    /* glassmorphism is already applied from HTML */
+}
+
+.slideshow-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; /* For centering image */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out; /* Smooth transition */
+}
+
+.slideshow-image.active {
+    opacity: 1;
+}
+
+.slideshow-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ensures image fits without cropping */
+    border-radius: 15px; /* Slightly smaller border-radius than parent */
+}
+
+/* Slideshow Navigation Buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: var(--dark-text); /* Changed to dark text for contrast on light glassmorphism */
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    border-radius: 0 5px 5px 0;
+    user-select: none;
+    -webkit-user-select: none;
+    background: rgba(255, 255, 255, 0.3); /* Slightly more opaque for buttons */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.next {
+    right: 0;
+    border-radius: 5px 0 0 5px;
+}
+.prev {
+    left: 0;
+}
+
+/* On hover, add a darker background color with a little more blur */
+.prev:hover, .next:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+}
+
+
+/* Wish Message */
+.wish-message {
+    text-align: center;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.wish-message h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: var(--dark-text);
+}
+
+.wish-message p {
+    margin-bottom: 15px;
+    color: var(--dark-text);
+}
+
+.wish-message .signature {
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 30px;
+    color: var(--dark-text);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: var(--dark-text);
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* Floating Elements (Balloons, Sparkles, Confetti) */
+.floating-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks to pass through */
+    overflow: hidden;
+    z-index: 0; /* Below content but above background-gradient */
+}
+
+.floating-element {
+    position: absolute;
+    opacity: 0;
+    animation: floatUp 15s infinite ease-out; /* Base float animation */
+}
+
+/* Balloons */
+/* .balloon {
+    width: 50px;
+    height: 70px; */
+    /* background-color: var(--pink); Default color, can vary with JS */
+    /* border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: inset -5px -5px 0 rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 1px;
+    height: 30px;
+    background-color: rgba(0,0,0,0.3);
+    transform: translateX(-50%);
+} */
+
+/* Sparkles */
+.sparkle {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.7);
+    animation: sparkleFade 3s infinite ease-out;
+}
+
+@keyframes sparkleFade {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+
+/* Confetti (simple dots for now, can be complex shapes) */
+.confetti {
+    width: 8px;
+    height: 8px;
+    background-color: var(--peach); /* Default, can vary with JS */
+    border-radius: 50%;
+    opacity: 0;
+    animation: fallAndFade 5s infinite linear;
+}
+
+@keyframes fallAndFade {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(calc(100vh + 100px)) rotate(720deg); opacity: 0; }
+}
+
+
+/* Animation for floating elements */
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) translateX(0) scale(0.8);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px) translateX(calc(var(--rand-x) * 1px)) scale(1.2);
+        opacity: 0;
+    }
+}
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .hero-section h1 {
+        font-size: 3em;
+    }
+
+    .hero-section .subtitle {
+        font-size: 1.2em;
+    }
+
+    .memory-lane h2, .wish-message h2 {
+        font-size: 2em;
+    }
+
+    .slideshow-container {
+        height: 300px;
+    }
+    .prev, .next {
+        padding: 12px;
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-section .subtitle {
+        font-size: 1em;
+    }
+
+    .slideshow-container {
+        height: 250px;
+    }
+
+    .wish-message p {
+        font-size: 0.9em;
+    }
+    .prev, .next {
+        padding: 8px;
+        font-size: 20px;
+    }
+}
+
+
+ /* 🎆 Blast Particles */
+ .particle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #ff4081;
+    border-radius: 50%;
+    opacity: 0.9;
+    animation: explode 1.2s ease-out forwards;
+    z-index: 10000;
+  }
+
+  @keyframes explode {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--x), var(--y)) scale(0.5);
+      opacity: 0;
+    }
+  }
+
+  /* 🎆 Confetti */
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+
+
+
+  /* Candles Blowing */
+  .candle {
+    width: 200px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .candle:hover {
+    transform: scale(1.05);
+  }
+
+  audio {
+    display: none;
+  }
+
+
+/* 🎆 Balloons */
+  /* .balloon {
+    position: absolute;
+    bottom: -150px;
+    animation: floatUp linear 1;
+    z-index: 2;
+  }
+
+  .balloon img {
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-120vh) rotate(0deg);
+      opacity: 0;
+    }
+  } */
+
+
+  /* 🎆 Balloons */
+  .balloons {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 60%;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -250px;
+      width: 50px;
+      animation: float 5s both ease-in;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0); opacity: 1; }
+      100% { transform: translateY(-150vh) rotate(360deg); opacity: 0; }
+    }
+
+    .cake-image img{
+        max-width: 100%;
+    max-height: 100%;
+    /* object-fit: contain; Ensures image fits without cropping */
+    border-radius: 15px; /* Slightly smaller border-radius than parent */
+    }
+
+
+    .birthday-wishes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 20px;
+
+      
+    }
+
+    .wish {
+      background: #fff4fc;
+      border: 1px solid #ffcce6;
+      padding: 15px 20px;
+      border-radius: 10px;
+      width: 200px;
+      font-size: 14px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+      cursor: pointer;
+
+      background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Blurs the content behind */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out; /* Initial fade in */
+    }
+
+    .wish:hover {
+      transform: scale(1.05);
+      background: #ffebf5;
+    }
+
+    .section {
+      padding: 30px 20px;
+      position: relative;
+      z-index: 2;
+    }
